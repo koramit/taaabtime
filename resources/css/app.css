@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    /* page */
+    .font-mali {
+        font-family: 'Mali', cursive;
+    }
+
+    .font-pattaya {
+        font-family: 'Pattaya', sans-serif;
+    }
+}
+
