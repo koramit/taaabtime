@@ -9,8 +9,6 @@ use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class AuthenticatedSessionController extends Controller
@@ -34,23 +32,15 @@ class AuthenticatedSessionController extends Controller
 
         $employee = Employee::query()->where('org_id', $user['org_id'])->first();
         if (! $employee) {
-            return back()->withErrors(['login' => 'ไม่สามารลงทะเบียนได้']);
+            return back()->withErrors(['login' => 'ไม่สามารลงทะเบียนได้ โปรดติดต่อผู้ดูแลระบบ']);
         }
 
 
-
-
         if (!$auth = User::query()->where('login', $validated['login'])->first()) {
-            // @TODO registration
-            // redirect register
+            session()->put('employee-register', $employee);
+            session()->put('login-register', $validated['login']);
 
-            // temporary create user
-            $auth = User::query()->create([
-                'login' => $validated['login'],
-                'name' => $validated['login'],
-                'password' => Hash::make(Str::random()),
-                'employee_id' => $employee->id,
-            ]);
+            return redirect()->route('register');
         }
 
         Auth::login($auth);
@@ -58,11 +48,11 @@ class AuthenticatedSessionController extends Controller
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
-    public function destroy(Request $request)
+    public function destroy()
     {
         Auth::guard('web')->logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        session()->invalidate();
+        session()->regenerateToken();
 
         return redirect()->route('login');
     }
