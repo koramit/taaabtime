@@ -33,9 +33,9 @@ return new class extends Migration
             $table->string('reason')->nullable();
             $table->string('summary')->nullable();
             $table->date('datestamp');
-            $table->unsignedTinyInteger('flex_time_use')->default(0);
+            $table->unsignedTinyInteger('flex_time_minutes')->default(0);
             $table->dateTime('batch_ref');
-            $table->index(['org_id', 'batch_ref']);
+            $table->index(['batch_ref', 'org_id', 'datestamp']);
             $table->timestamps();
         });
     }
