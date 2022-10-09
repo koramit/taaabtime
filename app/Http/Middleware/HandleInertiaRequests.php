@@ -40,7 +40,12 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            'routes' => [
+                'logout' => fn () => route('logout'),
+            ],
+            'flash' => [
+                'title' => fn () => $request->session()->pull('page-title', 'MISSING'),
+            ]
         ]);
     }
 }

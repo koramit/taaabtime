@@ -212,4 +212,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'AUTH_USER_URL' => env('AUTH_USER_URL'),
+    'AUTH_USER_APP' => env('AUTH_USER_APP'),
+    'AUTH_USER_TOKEN' => env('AUTH_USER_TOKEN'),
 ];

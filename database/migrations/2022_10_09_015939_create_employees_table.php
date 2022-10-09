@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('job_title_id');
             $table->foreign('job_title_id')->references('id')->on('job_titles');
             $table->string('work_hour')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
         });
     }
