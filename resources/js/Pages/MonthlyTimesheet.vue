@@ -1,3 +1,4 @@
+<!--suppress JSUnresolvedVariable -->
 <template>
     <div class="rounded-md border border-slate-300 px-3 py-2 shadow-sm focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
         <label
@@ -39,12 +40,20 @@
     <div
         class="mt-6 space-y-4 md:space-y-8"
     >
+        <div class="p-2 md:px-8 font-pattaya flex text-slate-600 text-center">
+            <p class="w-2/12 md:w-1/12">
+                วันที่
+            </p>
+            <p class="w-10/12 md:w-11/12">
+                หมายเหตุ
+            </p>
+        </div>
         <div
             v-for="timesheet in timesheets"
             :key="timesheet.day"
             class="p-2 md:px-8 shadow-sm rounded flex items-center space-x-4"
         >
-            <div class="w-1/12">
+            <div class="w-1/12 text-center">
                 <span
                     class="inline-block h-6 w-6 rounded-full bg-slate-600 text-white text-center"
                 >
@@ -59,7 +68,6 @@
 </template>
 
 <script setup>
-import {InertiaLink} from '@inertiajs/inertia-vue3';
 import {onMounted, ref, watch} from 'vue';
 import {Inertia} from '@inertiajs/inertia';
 
