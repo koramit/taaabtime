@@ -19,6 +19,10 @@ namespace App\Models{
  * @property int $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Division[] $divisions
+ * @property-read int|null $divisions_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee[] $employees
+ * @property-read int|null $employees_count
  * @method static \Illuminate\Database\Eloquent\Builder|Department newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Department newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Department query()
@@ -41,6 +45,9 @@ namespace App\Models{
  * @property int $department_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Department $department
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee[] $employees
+ * @property-read int|null $employees_count
  * @method static \Illuminate\Database\Eloquent\Builder|Division newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Division newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Division query()
@@ -65,11 +72,19 @@ namespace App\Models{
  * @property int $employment_type_id
  * @property int $job_title_id
  * @property string|null $work_hour
+ * @property int $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Department|null $department
+ * @property-read \App\Models\Division $division
+ * @property-read \App\Models\EmploymentType $employmentType
+ * @property-read \App\Models\JobTitle $jobTitle
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Timesheet[] $timesheets
+ * @property-read int|null $timesheets_count
  * @method static \Illuminate\Database\Eloquent\Builder|Employee newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Employee newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Employee query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Employee whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Employee whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Employee whereDivisionId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Employee whereEmploymentTypeId($value)
@@ -92,6 +107,8 @@ namespace App\Models{
  * @property int $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee[] $employees
+ * @property-read int|null $employees_count
  * @method static \Illuminate\Database\Eloquent\Builder|EmploymentType newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EmploymentType newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|EmploymentType query()
@@ -113,6 +130,8 @@ namespace App\Models{
  * @property int $active
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Employee[] $employees
+ * @property-read int|null $employees_count
  * @method static \Illuminate\Database\Eloquent\Builder|JobTitle newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|JobTitle newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|JobTitle query()
@@ -132,7 +151,7 @@ namespace App\Models{
  * @property int $id
  * @property int $employee_id
  * @property string|null $work_hour
- * @property string $datestamp
+ * @property \Illuminate\Support\Carbon $datestamp
  * @property string|null $check_in
  * @property string|null $check_out
  * @property string|null $remark
@@ -141,6 +160,7 @@ namespace App\Models{
  * @property int $flex_time_minutes
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Employee $employee
  * @method static \Illuminate\Database\Eloquent\Builder|Timesheet newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timesheet newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Timesheet query()
@@ -165,9 +185,9 @@ namespace App\Models{
  * App\Models\TimesheetImport
  *
  * @property int $id
- * @property string $department
- * @property string $division
- * @property string $type
+ * @property string|null $department
+ * @property string|null $division
+ * @property string|null $type
  * @property int $org_id
  * @property string $full_name
  * @property string $position
@@ -214,13 +234,15 @@ namespace App\Models{
  * App\Models\User
  *
  * @property int $id
+ * @property string $login
  * @property string $name
- * @property string $email
- * @property \Illuminate\Support\Carbon|null $email_verified_at
  * @property string $password
+ * @property int $employee_id
+ * @property int $active
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Employee $employee
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
@@ -229,10 +251,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|User query()
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmail($value)
- * @method static \Illuminate\Database\Eloquent\Builder|User whereEmailVerifiedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereEmployeeId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User whereLogin($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)

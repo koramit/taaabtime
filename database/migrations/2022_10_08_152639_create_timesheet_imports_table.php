@@ -19,9 +19,9 @@ return new class extends Migration
 
         Schema::create('timesheet_imports', function (Blueprint $table) {
             $table->id();
-            $table->string('department');
-            $table->string('division');
-            $table->string('type');
+            $table->string('department')->nullable();
+            $table->string('division')->nullable();
+            $table->string('type')->nullable();
             $table->unsignedInteger('org_id');
             $table->string('full_name');
             $table->string('position');

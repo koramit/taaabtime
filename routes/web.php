@@ -2,11 +2,12 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\MonthlyTimesheetController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return Inertia\Inertia::render('Welcome');
-})->middleware(['auth'])->name('home');
+Route::get('/', MonthlyTimesheetController::class)
+    ->middleware(['auth'])
+    ->name('home');
 
 // Auth
 Route::middleware(['guest'])->group(function () {

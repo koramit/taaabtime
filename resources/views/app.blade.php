@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="th" class="h-full">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +13,7 @@
     @vite('resources/js/app.js')
     @inertiaHead
 </head>
-<body class="font-mali antialiased">
+<body class="h-full font-mali antialiased">
 @inertia
 </body>
 </html>

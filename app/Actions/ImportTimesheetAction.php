@@ -31,6 +31,8 @@ class ImportTimesheetAction
             return false;
         }
 
+        // @TODO update employee full_name/division/job
+
         return $this->deleteBatch($dateRef);
     }
 
@@ -159,13 +161,23 @@ class ImportTimesheetAction
                     ->first();
             }
 
+            $jobTitle = JobTitle::query()->firstOrCreate(['name' => $employee->position]);
+            if (!$employee->department || !$employee->division || !$employee->type) {
+                Employee::query()->create([
+                    'full_name' => $employee->full_name,
+                    'org_id' => $employee->org_id,
+                    'division_id' => 1,
+                    'employment_type_id' => 1,
+                    'job_title_id' => $jobTitle->id,
+                ]);
+            }
+
             $department = Department::query()->firstOrCreate(['name' => $employee->department]);
             $division = Division::query()
                 ->firstOrCreate([
                     'name' => $employee->division,
                     'department_id' => $department->id,
                 ]);
-            $jobTitle = JobTitle::query()->firstOrCreate(['name' => $employee->position]);
             $employmentType = EmploymentType::query()->firstOrCreate(['name' => $employee->type]);
 
             Employee::query()->create([
