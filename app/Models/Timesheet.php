@@ -11,6 +11,7 @@ class Timesheet extends Model
     use HasFactory;
 
     protected $guarded = [];
+
     protected $casts = [
         'datestamp' => 'date',
     ];

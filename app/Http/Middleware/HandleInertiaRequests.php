@@ -45,7 +45,7 @@ class HandleInertiaRequests extends Middleware
             ],
             'flash' => [
                 'title' => fn () => $request->session()->pull('page-title', 'MISSING'),
-            ]
+            ],
         ]);
     }
 }

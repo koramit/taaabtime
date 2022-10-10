@@ -28,7 +28,6 @@ class AuthUserAPI
         }
 
         if ($response->successful()) {
-
             return $response->json();
         }
         Log::error($route.'|'.$response->status().'|'.$response->body());

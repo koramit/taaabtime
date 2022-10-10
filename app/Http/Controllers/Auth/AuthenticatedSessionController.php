@@ -35,8 +35,7 @@ class AuthenticatedSessionController extends Controller
             return back()->withErrors(['login' => 'ไม่สามารลงทะเบียนได้ โปรดติดต่อผู้ดูแลระบบ']);
         }
 
-
-        if (!$auth = User::query()->where('login', $validated['login'])->first()) {
+        if (! $auth = User::query()->where('login', $validated['login'])->first()) {
             session()->put('employee-register', $employee);
             session()->put('login-register', $validated['login']);
 

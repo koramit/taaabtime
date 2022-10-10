@@ -124,7 +124,7 @@ class ImportTimesheetAction
             ->whereIn('org_id', $ids)
             ->pluck('org_id');
 
-        $newEmployees = $ids->filter(fn($id) => $employees->doesntContain($id));
+        $newEmployees = $ids->filter(fn ($id) => $employees->doesntContain($id));
         foreach ($newEmployees as $new) {
             if ($this->insertEmployee($dateRef, $new) === false) {
                 return false;
@@ -151,7 +151,7 @@ class ImportTimesheetAction
                 ->first();
 
             // part-time
-            if (!$employee) {
+            if (! $employee) {
                 $employee = TimesheetImport::query()
                     ->where('batch_ref', $dateRef)
                     ->where('org_id', $id)
@@ -183,7 +183,6 @@ class ImportTimesheetAction
 
         return true;
     }
-
 
     protected function insertTimesheets(Carbon $dateRef, Collection $ids): bool
     {

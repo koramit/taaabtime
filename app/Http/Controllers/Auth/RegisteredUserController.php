@@ -16,22 +16,20 @@ class RegisteredUserController extends Controller
     public function create()
     {
         if (! $employee = session('employee-register')) {
-
             return redirect()->route('login');
         }
 
         return Inertia::render('Auth/RegisterForm', [
             'registerStoreRoute' => route('register.store'),
             'employee' => [
-                'full_name' => $employee->full_name
-            ]
+                'full_name' => $employee->full_name,
+            ],
         ]);
     }
 
     public function store(Request $request)
     {
         if (! $employee = session('employee-register')) {
-
             return redirect()->route('login');
         }
 
