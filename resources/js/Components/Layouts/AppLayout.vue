@@ -198,10 +198,14 @@
 
 <script setup>
 import {InertiaHead, InertiaLink} from '@inertiajs/inertia-vue3';
-import {onMounted, ref} from 'vue';
+import {onBeforeUnmount, onMounted, ref} from 'vue';
 
 onMounted(() => {
     document.body.classList.add('bg-slate-50');
+});
+
+onBeforeUnmount(() => {
+    document.body.classList.remove('bg-slate-50');
 });
 
 const showMobileMenu = ref(false);

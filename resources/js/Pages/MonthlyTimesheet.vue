@@ -108,9 +108,3 @@ const stats = ref([
 
 onMounted(() => setTimeout(() => animationTimeout.value = true, 3000));
 </script>
-<script>
-import AppLayout from '../Components/Layouts/AppLayout.vue';
-export default {
-    layout: AppLayout,
-};
-</script>
