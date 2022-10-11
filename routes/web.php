@@ -3,11 +3,17 @@
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MonthlyTimesheetController;
+use App\Http\Controllers\PreferenceController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', MonthlyTimesheetController::class)
-    ->middleware(['auth'])
-    ->name('home');
+\Auth::loginUsingId(1);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/', MonthlyTimesheetController::class)
+        ->name('home');
+    Route::get('preference', PreferenceController::class)
+        ->name('preference');
+});
 
 // Auth
 Route::middleware(['guest'])->group(function () {

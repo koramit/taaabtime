@@ -133,17 +133,25 @@ class MonthlyTimesheetSummaryAction
             'in' => 0,
             'out' => 0
         ];
+        $formattedTimesheets = [];
         $holidays = $this->getHolidays($month);
         $noTimestampRemarks = collect(array_keys($this->mapNoTimestampRemarks));
         $leaveRemarks = collect(array_keys($this->mapLeaveRemarks));
         $lateRemarks = collect(array_keys($this->mapLateRemarks));
         foreach($timesheets as $timesheet) {
+            $formattedTimesheet = [
+                'day' => $timesheet->datestamp->day,
+                'remark' => $timesheet->remark,
+            ];
+            $tags = [];
             if (
                 !$timesheet->remark
                 || $timesheet->datestamp->is('Saturday')
                 || $timesheet->datestamp->is('Saturday')
                 || $holidays->contains($timesheet->datestamp->format('Y-m-d'))
             ) {
+                $formattedTimesheet['tags'] = $tags;
+                $formattedTimesheets[] = $formattedTimesheet;
                 continue;
             }
 
@@ -152,18 +160,23 @@ class MonthlyTimesheetSummaryAction
                 // no timestamp
                 if ($noTimestampRemarks->contains($remark)) {
                     $noTimestamp[$this->mapNoTimestampRemarks[$remark]] = $noTimestamp[$this->mapNoTimestampRemarks[$remark]] + 1;
+                    $tags[] = 'no-timestamp-'.$this->mapNoTimestampRemarks[$remark];
                 }
 
                 // leave
                 if ($leaveRemarks->contains($remark)) {
                     $leave[$this->mapLeaveRemarks[$remark]] = $leave[$this->mapLeaveRemarks[$remark]] + (str_contains($remark, 'ครึ่ง') ? 0.5 : 1);
+                    $tags[] = 'leave-'.$this->mapLeaveRemarks[$remark];
                 }
 
                 // late
                 if ($lateRemarks->contains($remark)) {
                     $late[$this->mapLateRemarks[$remark]] = $late[$this->mapLateRemarks[$remark]] + 1;
+                    $tags[] = 'late-'.$this->mapLateRemarks[$remark];
                 }
             }
+            $formattedTimesheet['tags'] = $tags;
+            $formattedTimesheets[] = $formattedTimesheet;
         }
 
         $monthsFormatted = [];
@@ -171,12 +184,21 @@ class MonthlyTimesheetSummaryAction
             $monthsFormatted[] = ['value' => $value, 'label' => $label];
         }
 
+        $stats = [
+            ['label' => 'ไม่ทาบเข้า', 'data' => $noTimestamp['in'], 'tag' => 'no-timestamp-in'],
+            ['label' => 'ไม่ทาบออก', 'data' => $noTimestamp['out'], 'tag' => 'no-timestamp-out'],
+            ['label' => 'ไม่ทาบเข้า-ออก', 'data' => $noTimestamp['both'], 'tag' => 'no-timestamp-both'],
+            ['label' => 'ลากิจ', 'data' => $leave['business'], 'tag' => 'leave-business'],
+            ['label' => 'ลาป่วย', 'data' => $leave['sick'], 'tag' => 'leave-sick'],
+            ['label' => 'ลาพักผ่อน', 'data' => $leave['vacation'], 'tag' => 'leave-vacation'],
+            ['label' => 'เข้าสาย', 'data' => $late['in'], 'tag' => 'late-in'],
+            ['label' => 'ออกก่อน', 'data' => $late['out'], 'tag' => 'late-out'],
+        ];
+
         return [
             'months' => $monthsFormatted,
-            'noTimestamp' => $noTimestamp,
-            'leave' => $leave,
-            'late' => $late,
-            'timesheets' => $timesheets->transform(fn ($t) => ['day' => $t->datestamp->day, 'remark' => $t->remark]),
+            'stats' => $stats,
+            'timesheets' => $formattedTimesheets,
         ];
     }
 
