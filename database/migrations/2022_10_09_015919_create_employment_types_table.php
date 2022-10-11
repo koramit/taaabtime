@@ -14,6 +14,8 @@ return new class extends Migration
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
+
+        \App\Models\EmploymentType::query()->create(['name' => 'ไม่ระบุ']);
     }
 
     public function down(): void

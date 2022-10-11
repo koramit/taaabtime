@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            'routes' => [
+            'appRoutes' => [
                 'logout' => fn () => route('logout'),
             ],
             'flash' => [
@@ -49,8 +49,9 @@ class HandleInertiaRequests extends Middleware
             ],
             'user' => $request->user()
                 ? [
-                  'name' => fn () => $request->user()->name,
-                  'job_title' => fn () => $request->user()->employee->jobTitle->name,
+                    'name' => fn () => $request->user()->name,
+                    'job_title' => fn () => $request->user()->employee->jobTitle->name,
+                    'avatar' => fn () => $request->user()->socialProfiles()->where('active', true)->first()?->profile['avatar'] ?? null
                 ] : [],
         ]);
     }

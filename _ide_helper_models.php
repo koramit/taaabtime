@@ -12,6 +12,38 @@
 
 namespace App\Models{
 /**
+ * App\Models\ChatBot
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $callback_token
+ * @property int $social_provider_id
+ * @property int $user_count
+ * @property mixed $configs
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\SocialProvider|null $provider
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\User[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot findByUnhashKey(string $hashed)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot minUserCountByProviderId($socialProviderId)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot query()
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereCallbackToken($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereConfigs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereSocialProviderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|ChatBot whereUserCount($value)
+ */
+	class ChatBot extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Department
  *
  * @property int $id
@@ -146,6 +178,64 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * App\Models\SocialProfile
+ *
+ * @property int $id
+ * @property int $user_id
+ * @property int $social_provider_id
+ * @property string $profile_id
+ * @property mixed $profile
+ * @property int $active
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\SocialProvider|null $socialProvider
+ * @property-read \App\Models\User|null $user
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile activeLoginByProviderId($providerId)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereProfile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereProfileId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereSocialProviderId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProfile whereUserId($value)
+ */
+	class SocialProfile extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
+ * App\Models\SocialProvider
+ *
+ * @property int $id
+ * @property int $platform
+ * @property string $name
+ * @property mixed $configs
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ChatBot[] $chatBots
+ * @property-read int|null $chat_bots_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SocialProfile[] $users
+ * @property-read int|null $users_count
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider findByUnhashKey(string $hashed)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider query()
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider whereConfigs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider wherePlatform($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|SocialProvider whereUpdatedAt($value)
+ */
+	class SocialProvider extends \Eloquent {}
+}
+
+namespace App\Models{
+/**
  * App\Models\Timesheet
  *
  * @property int $id
@@ -190,7 +280,7 @@ namespace App\Models{
  * @property string|null $type
  * @property int $org_id
  * @property string $full_name
- * @property string $position
+ * @property string|null $position
  * @property string|null $work_hour
  * @property string|null $flex_time_note
  * @property \Illuminate\Support\Carbon|null $check_in
@@ -242,9 +332,14 @@ namespace App\Models{
  * @property string|null $remember_token
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\SocialProfile|null $activeLINEProfile
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\ChatBot[] $chatBots
+ * @property-read int|null $chat_bots_count
  * @property-read \App\Models\Employee $employee
  * @property-read \Illuminate\Notifications\DatabaseNotificationCollection|\Illuminate\Notifications\DatabaseNotification[] $notifications
  * @property-read int|null $notifications_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\SocialProfile[] $socialProfiles
+ * @property-read int|null $social_profiles_count
  * @property-read \Illuminate\Database\Eloquent\Collection|\Laravel\Sanctum\PersonalAccessToken[] $tokens
  * @property-read int|null $tokens_count
  * @method static \Database\Factories\UserFactory factory(...$parameters)
@@ -260,6 +355,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|User wherePassword($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereRememberToken($value)
  * @method static \Illuminate\Database\Eloquent\Builder|User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|User withActiveChatBots()
  */
 	class User extends \Eloquent {}
 }

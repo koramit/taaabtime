@@ -16,6 +16,8 @@ return new class extends Migration
             $table->foreign('department_id')->references('id')->on('departments');
             $table->timestamps();
         });
+
+        \App\Models\Division::query()->create(['name' => 'ไม่ระบุ', 'department_id' => 1]);
     }
 
     public function down(): void

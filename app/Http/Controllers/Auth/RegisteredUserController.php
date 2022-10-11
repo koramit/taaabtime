@@ -19,6 +19,8 @@ class RegisteredUserController extends Controller
             return redirect()->route('login');
         }
 
+        session()->flash('page-title', 'ลงทะเบียน');
+
         return Inertia::render('Auth/RegisterForm', [
             'registerStoreRoute' => route('register.store'),
             'employee' => [

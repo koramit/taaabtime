@@ -11,7 +11,9 @@
                     d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 202.7 16.28 153.2 44.15 112.2C49.12 104.9 59.07 103 66.37 108C73.68 112.1 75.58 122.9 70.61 130.2C46.24 166.1 32 209.4 32 256C32 379.7 132.3 480 256 480C379.7 480 480 379.7 480 256C480 137.7 388.2 40.77 272 32.56V112C272 120.8 264.8 128 256 128C247.2 128 240 120.8 240 112V16C240 7.164 247.2 0 256 0C397.4 0 512 114.6 512 256V256zM267.3 244.7C273.6 250.9 273.6 261.1 267.3 267.3C261.1 273.6 250.9 273.6 244.7 267.3L148.7 171.3C142.4 165.1 142.4 154.9 148.7 148.7C154.9 142.4 165.1 142.4 171.3 148.7L267.3 244.7z"
                 /></svg>
             </div>
-            <h2 class="mt-6 text-center text-3xl font-pattaya tracking-tight text-slate-900">ทาบไทม์</h2>
+            <h2 class="mt-6 text-center text-3xl font-pattaya tracking-tight text-slate-900">
+                ทาบไทม์
+            </h2>
             <p class="mt-2 text-center text-sm text-slate-600 flex justify-center items-center">
                 Everytap
                 <svg
@@ -35,17 +37,41 @@
 
         <div class="mt-8 mx-4 sm:mx-auto sm:w-full sm:max-w-md">
             <div class="bg-white py-8 px-4 shadow rounded-lg sm:px-10">
-                <form class="space-y-6" @submit.prevent="form.post(loginStoreRoute)">
+                <form
+                    class="space-y-6"
+                    @submit.prevent="form.post(routes.login)"
+                >
                     <div class="isolate -space-y-px rounded-md shadow-sm">
                         <div class="relative rounded-md rounded-b-none border border-slate-300 px-3 py-2 focus-within:z-10 focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                            <label for="login" class="block text-xs font-semibold text-slate-900">ชื่อบัญชี</label>
-                            <input type="text" name="login" id="login" class="form-input block w-full border-0 p-0 text-slate-900 focus:ring-0 sm:text-sm" v-model="form.login">
+                            <label
+                                for="login"
+                                class="block text-xs font-semibold text-slate-900"
+                            >ชื่อบัญชี</label>
+                            <input
+                                type="text"
+                                name="login"
+                                id="login"
+                                class="form-input block w-full border-0 p-0 text-slate-900 focus:ring-0 sm:text-sm"
+                                v-model="form.login"
+                            >
                         </div>
                         <div class="relative rounded-md rounded-t-none border border-slate-300 px-3 py-2 focus-within:z-10 focus-within:border-slate-600 focus-within:ring-1 focus-within:ring-slate-600">
-                            <label for="password" class="block text-xs font-semibold text-slate-900">รหัสผ่าน</label>
+                            <label
+                                for="password"
+                                class="block text-xs font-semibold text-slate-900"
+                            >รหัสผ่าน</label>
                             <div class="relative mt-1 rounded-md">
-                                <input type="password" name="password" id="password" class="form-input block w-full border-0 p-0 text-slate-900 focus:ring-0 sm:text-sm"  v-model="form.password">
-                                <button v-show="form.password && form.login" class="block absolute inset-y-0 right-0 flex items-center pr-3">
+                                <input
+                                    type="password"
+                                    name="password"
+                                    id="password"
+                                    class="form-input block w-full border-0 p-0 text-slate-900 focus:ring-0 sm:text-sm"
+                                    v-model="form.password"
+                                >
+                                <button
+                                    v-show="form.password && form.login"
+                                    class="block absolute inset-y-0 right-0 flex items-center pr-3"
+                                >
                                     <svg
                                         class="h-5 w-5 p-1 rounded-full bg-slate-100 text-slate-600"
                                         viewBox="0 0 512 512"
@@ -57,13 +83,15 @@
                             </div>
                         </div>
                     </div>
-                    <p class="!mt-2 text-sm text-red-600">{{ form.errors.login }}</p>
+                    <p class="!mt-2 text-sm text-red-600">
+                        {{ form.errors.login }}
+                    </p>
                 </form>
 
                 <div class="mt-6">
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center">
-                            <div class="w-full border-t border-slate-300"></div>
+                            <div class="w-full border-t border-slate-300" />
                         </div>
                         <div class="relative flex justify-center text-sm">
                             <span class="bg-white px-2 text-slate-500">หรือเข้าสู่ระบบด้วย LINE application</span>
@@ -71,7 +99,10 @@
                     </div>
 
                     <div class="mt-6">
-                        <a href="#" class="inline-flex w-full justify-center rounded-md border border-slate-300 bg-white py-2 px-4 text-sm font-medium text-slate-500 shadow-sm hover:bg-slate-50">
+                        <a
+                            :href="routes.lineLogin"
+                            class="inline-flex w-full justify-center rounded-md border border-slate-300 bg-white py-2 px-4 text-sm font-medium text-slate-500 shadow-sm hover:bg-slate-50"
+                        >
                             <span class="sr-only">Sign in with LINE</span>
                             <svg
                                 class="w-6 h-6"
@@ -80,8 +111,9 @@
                                 fill="currentColor"
                                 d="M272.1 204.2v71.1c0 1.8-1.4 3.2-3.2 3.2h-11.4c-1.1 0-2.1-.6-2.6-1.3l-32.6-44v42.2c0 1.8-1.4 3.2-3.2 3.2h-11.4c-1.8 0-3.2-1.4-3.2-3.2v-71.1c0-1.8 1.4-3.2 3.2-3.2H219c1 0 2.1.5 2.6 1.4l32.6 44v-42.2c0-1.8 1.4-3.2 3.2-3.2h11.4c1.8-.1 3.3 1.4 3.3 3.1zm-82-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 1.8 1.4 3.2 3.2 3.2h11.4c1.8 0 3.2-1.4 3.2-3.2v-71.1c0-1.7-1.4-3.2-3.2-3.2zm-27.5 59.6h-31.1v-56.4c0-1.8-1.4-3.2-3.2-3.2h-11.4c-1.8 0-3.2 1.4-3.2 3.2v71.1c0 .9.3 1.6.9 2.2.6.5 1.3.9 2.2.9h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.7-1.4-3.2-3.1-3.2zM332.1 201h-45.7c-1.7 0-3.2 1.4-3.2 3.2v71.1c0 1.7 1.4 3.2 3.2 3.2h45.7c1.8 0 3.2-1.4 3.2-3.2v-11.4c0-1.8-1.4-3.2-3.2-3.2H301v-12h31.1c1.8 0 3.2-1.4 3.2-3.2V234c0-1.8-1.4-3.2-3.2-3.2H301v-12h31.1c1.8 0 3.2-1.4 3.2-3.2v-11.4c-.1-1.7-1.5-3.2-3.2-3.2zM448 113.7V399c-.1 44.8-36.8 81.1-81.7 81H81c-44.8-.1-81.1-36.9-81-81.7V113c.1-44.8 36.9-81.1 81.7-81H367c44.8.1 81.1 36.8 81 81.7zm-61.6 122.6c0-73-73.2-132.4-163.1-132.4-89.9 0-163.1 59.4-163.1 132.4 0 65.4 58 120.2 136.4 130.6 19.1 4.1 16.9 11.1 12.6 36.8-.7 4.1-3.3 16.1 14.1 8.8 17.4-7.3 93.9-55.3 128.2-94.7 23.6-26 34.9-52.3 34.9-81.5z"
                             /></svg>
-
                         </a>
+                        <small class="text-sm text-slate-400">{{ $page.props.errors.status }}</small>
+                        <small class="text-sm text-slate-400">{{ $page.props.errors.notice }}</small>
                     </div>
                 </div>
             </div>
@@ -93,11 +125,11 @@
 import {InertiaHead, useForm} from '@inertiajs/inertia-vue3';
 
 defineProps({
-    loginStoreRoute: {type: String, required: true}
+    routes: {type: Object, required: true}
 });
 
 const form = useForm({
     login: null,
     password: null,
-})
+});
 </script>

@@ -161,8 +161,10 @@ class ImportTimesheetAction
                     ->first();
             }
 
-            $jobTitle = JobTitle::query()->firstOrCreate(['name' => $employee->position]);
-            if (!$employee->department || !$employee->division || !$employee->type) {
+            $jobTitle = ($employee->position)
+                ? JobTitle::query()->firstOrCreate(['name' => $employee->position])
+                : JobTitle::query()->find(1);
+            if (! $employee->department || ! $employee->division || ! $employee->type) {
                 Employee::query()->create([
                     'full_name' => $employee->full_name,
                     'org_id' => $employee->org_id,

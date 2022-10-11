@@ -13,10 +13,6 @@ return new class extends Migration
      */
     public function up()
     {
-        if (config('database.default') !== 'sqlite') {
-            return;
-        }
-
         Schema::create('timesheet_imports', function (Blueprint $table) {
             $table->id();
             $table->string('department')->nullable();
@@ -24,7 +20,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->unsignedInteger('org_id');
             $table->string('full_name');
-            $table->string('position');
+            $table->string('position')->nullable();
             $table->string('work_hour')->nullable();
             $table->string('flex_time_note')->nullable();
             $table->time('check_in')->nullable();

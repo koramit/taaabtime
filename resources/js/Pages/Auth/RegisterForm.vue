@@ -73,7 +73,7 @@
                             <button
                                 type="button"
                                 @click="termsModal.open()"
-                                class="font-medium text-slate-600 hover:text-slate-500 underline"
+                                class="font-semibold text-slate-600 hover:text-slate-500 underline"
                             >
                                 อ่าน
                             </button>

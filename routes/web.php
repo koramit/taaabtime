@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\LINELinkController;
+use App\Http\Controllers\Auth\LINELoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MonthlyTimesheetController;
 use App\Http\Controllers\PreferenceController;
 use Illuminate\Support\Facades\Route;
-
-\Auth::loginUsingId(1);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', MonthlyTimesheetController::class)
@@ -25,7 +25,20 @@ Route::middleware(['guest'])->group(function () {
         ->name('register');
     Route::post('register', [RegisteredUserController::class, 'store'])
         ->name('register.store');
+    Route::get('line-login/{provider}', [LINELoginController::class, 'create'])
+        ->name('line-login.create');
+    Route::get('line-login/{provider}/callback', [LINELoginController::class, 'store'])
+        ->name('line-login.store');
 });
-Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
-    ->middleware(['auth'])
-    ->name('logout');
+Route::middleware('auth')->group(function () {
+    Route::delete('logout', [AuthenticatedSessionController::class, 'destroy'])
+        ->name('logout');
+    Route::get('line-link/{provider}', [LINELinkController::class, 'create'])
+        ->name('line-link.create');
+    Route::get('line-link/{provider}/callback', [LINELinkController::class, 'store'])
+        ->name('line-link.store');
+});
+
+Route::get('logo', function () {
+    return Inertia\Inertia::render('DesignLogo');
+});
