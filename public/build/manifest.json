@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.bdd1a5cb.js",
+    "file": "assets/app.12d9ced1.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -15,7 +15,7 @@
     ]
   },
   "resources/js/Pages/Auth/LoginForm.vue": {
-    "file": "assets/LoginForm.087344e6.js",
+    "file": "assets/LoginForm.18933dd9.js",
     "src": "resources/js/Pages/Auth/LoginForm.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -23,7 +23,7 @@
     ]
   },
   "resources/js/Pages/Auth/RegisterForm.vue": {
-    "file": "assets/RegisterForm.1da037d3.js",
+    "file": "assets/RegisterForm.c8db0e18.js",
     "src": "resources/js/Pages/Auth/RegisterForm.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -34,7 +34,7 @@
     ]
   },
   "resources/js/Pages/DesignLogo.vue": {
-    "file": "assets/DesignLogo.6830fc4b.js",
+    "file": "assets/DesignLogo.32699049.js",
     "src": "resources/js/Pages/DesignLogo.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -42,7 +42,7 @@
     ]
   },
   "resources/js/Pages/MonthlyTimesheet.vue": {
-    "file": "assets/MonthlyTimesheet.8995029b.js",
+    "file": "assets/MonthlyTimesheet.5c680ced.js",
     "src": "resources/js/Pages/MonthlyTimesheet.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -53,23 +53,23 @@
     ]
   },
   "resources/js/Pages/PreferencePage.vue": {
-    "file": "assets/PreferencePage.7689c415.js",
+    "file": "assets/PreferencePage.7529bcde.js",
     "src": "resources/js/Pages/PreferencePage.vue",
     "isDynamicEntry": true,
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "resources/js/Pages/Auth/RegisterForm.css": {
-    "file": "assets/RegisterForm.9f8aae12.css",
-    "src": "resources/js/Pages/Auth/RegisterForm.css"
+  "resources/js/app.css": {
+    "file": "assets/app.276aedb1.css",
+    "src": "resources/js/app.css"
   },
   "resources/js/Pages/MonthlyTimesheet.css": {
     "file": "assets/MonthlyTimesheet.605c082d.css",
     "src": "resources/js/Pages/MonthlyTimesheet.css"
   },
-  "resources/js/app.css": {
-    "file": "assets/app.276aedb1.css",
-    "src": "resources/js/app.css"
+  "resources/js/Pages/Auth/RegisterForm.css": {
+    "file": "assets/RegisterForm.9f8aae12.css",
+    "src": "resources/js/Pages/Auth/RegisterForm.css"
   }
 }
