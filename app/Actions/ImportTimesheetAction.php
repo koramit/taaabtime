@@ -39,10 +39,14 @@ class ImportTimesheetAction
     protected function import(string $filePath, Carbon $batchRef): bool
     {
         if (! file_exists($filePath)) {
+            echo "file not exists\n";
+
             return false;
         }
 
         if (($handle = fopen($filePath, 'r')) === false) {
+            echo "file not open\n";
+
             return false;
         }
 
@@ -129,12 +133,16 @@ class ImportTimesheetAction
         $newEmployees = $ids->filter(fn ($id) => $employees->doesntContain($id));
         foreach ($newEmployees as $new) {
             if ($this->insertEmployee($dateRef, $new) === false) {
+                echo "can not insert employee\n";
+
                 return false;
             }
         }
 
         foreach ($ids->chunk(20) as $employees) {
             if ($this->insertTimesheets($dateRef, $employees->values()) === false) {
+                echo "can not insert timesheet\n";
+
                 return false;
             }
         }
