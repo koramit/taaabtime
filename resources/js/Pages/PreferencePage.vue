@@ -39,7 +39,7 @@
         </a>
         <small class="text-sm text-slate-400">{{ $page.props.errors.status }}</small>
     </div>
-    <div v-if="routes.lineLink">
+    <div v-else>
         <label class="font-semibold text-slate-600">เชื่อมต่อ LINE แล้ว 🎉</label>
     </div>
 </template>
