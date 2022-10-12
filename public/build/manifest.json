@@ -1,0 +1,75 @@
+{
+  "resources/js/app.js": {
+    "file": "assets/app.6c9311b5.js",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "dynamicImports": [
+      "resources/js/Pages/Auth/LoginForm.vue",
+      "resources/js/Pages/Auth/RegisterForm.vue",
+      "resources/js/Pages/DesignLogo.vue",
+      "resources/js/Pages/MonthlyTimesheet.vue",
+      "resources/js/Pages/PreferencePage.vue"
+    ],
+    "css": [
+      "assets/app.276aedb1.css"
+    ]
+  },
+  "resources/js/Pages/Auth/LoginForm.vue": {
+    "file": "assets/LoginForm.c88efe36.js",
+    "src": "resources/js/Pages/Auth/LoginForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/RegisterForm.vue": {
+    "file": "assets/RegisterForm.20cd9956.js",
+    "src": "resources/js/Pages/Auth/RegisterForm.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/RegisterForm.9f8aae12.css"
+    ]
+  },
+  "resources/js/Pages/DesignLogo.vue": {
+    "file": "assets/DesignLogo.5c06a139.js",
+    "src": "resources/js/Pages/DesignLogo.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/MonthlyTimesheet.vue": {
+    "file": "assets/MonthlyTimesheet.ca2decd7.js",
+    "src": "resources/js/Pages/MonthlyTimesheet.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "css": [
+      "assets/MonthlyTimesheet.605c082d.css"
+    ]
+  },
+  "resources/js/Pages/PreferencePage.vue": {
+    "file": "assets/PreferencePage.81a8f0a5.js",
+    "src": "resources/js/Pages/PreferencePage.vue",
+    "isDynamicEntry": true,
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "resources/js/Pages/Auth/RegisterForm.css": {
+    "file": "assets/RegisterForm.9f8aae12.css",
+    "src": "resources/js/Pages/Auth/RegisterForm.css"
+  },
+  "resources/js/Pages/MonthlyTimesheet.css": {
+    "file": "assets/MonthlyTimesheet.605c082d.css",
+    "src": "resources/js/Pages/MonthlyTimesheet.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.276aedb1.css",
+    "src": "resources/js/app.css"
+  }
+}
