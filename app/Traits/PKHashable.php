@@ -9,7 +9,9 @@ trait PKHashable
 {
     public function resolveRouteBinding($value, $field = null)
     {
-        return $this->findByUnhashKey($value)->firstOrFail();
+        return $field
+            ? $this->query()->where($field, $value)->firstOrFail()
+            : $this->findByUnhashKey($value)->firstOrFail();
     }
 
     public function scopeFindByUnhashKey($query, string $hashed)
