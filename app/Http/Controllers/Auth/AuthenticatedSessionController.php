@@ -17,12 +17,15 @@ class AuthenticatedSessionController extends Controller
     public function create()
     {
         session()->flash('page-title', 'เข้าสู่ระบบ');
+        $lineProvider = SocialProvider::query()->first();
 
         return Inertia::render('Auth/LoginForm', [
             'routes' => [
                 'login' => route('login.store'),
-                'lineLogin' => route('line-login.create', SocialProvider::query()->first()->hashed_key),
-            ]
+                'lineLogin' => $lineProvider
+                    ? route('line-login.create', $lineProvider->hashed_key)
+                    : null,
+            ],
         ]);
     }
 

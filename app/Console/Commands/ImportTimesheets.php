@@ -31,9 +31,11 @@ class ImportTimesheets extends Command
         $start = now();
         if ((new ImportTimesheetAction())(storage_path("app/uploads/{$this->argument('filename')}.csv"))) {
             $this->line('Successfully imported in '.now()->diffInSeconds($start).' seconds');
+
             return Command::SUCCESS;
         } else {
             $this->line('Import failed in '.now()->diffInSeconds($start).' seconds');
+
             return Command::FAILURE;
         }
     }

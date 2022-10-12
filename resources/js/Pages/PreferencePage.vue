@@ -26,7 +26,7 @@
         </p>
         <a
             :href="routes.lineAdd"
-            class="mt-8 md:mt-12 flex w-full md:w-32 justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 disabled:bg-slate-400 disabled:text-slate-100"
+            class="mt-8 md:mt-12 flex w-full md:w-48 justify-center rounded-md border border-transparent bg-slate-600 py-2 px-4 text-sm font-semibold text-white shadow-sm hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 disabled:bg-slate-400 disabled:text-slate-100"
         >
             เพิ่มเพื่อน
             <svg

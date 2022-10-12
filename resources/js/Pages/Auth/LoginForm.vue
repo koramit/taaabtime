@@ -88,7 +88,10 @@
                     </p>
                 </form>
 
-                <div class="mt-6">
+                <div
+                    class="mt-6"
+                    v-if="routes.lineLogin"
+                >
                     <div class="relative">
                         <div class="absolute inset-0 flex items-center">
                             <div class="w-full border-t border-slate-300" />

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Actions\Auth\LoginRecordAction;
 use App\APIs\LINELoginAPI;
 use App\Http\Controllers\Controller;
 use App\Models\SocialProfile;
@@ -11,7 +10,6 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Jenssegers\Agent\Agent;
 
 class LINELoginController extends Controller
 {

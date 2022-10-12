@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LINELoginController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\MonthlyTimesheetController;
 use App\Http\Controllers\PreferenceController;
+use App\Http\Controllers\WebhookController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
@@ -38,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('line-link/{provider}/callback', [LINELinkController::class, 'store'])
         ->name('line-link.store');
 });
+
+Route::post('webhook/messaging/{chatBot:callback_token}', WebhookController::class);
 
 Route::get('logo', function () {
     return Inertia\Inertia::render('DesignLogo');

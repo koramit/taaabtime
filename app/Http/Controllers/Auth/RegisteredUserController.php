@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Employee;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
@@ -31,6 +32,7 @@ class RegisteredUserController extends Controller
 
     public function store(Request $request)
     {
+        /* @var Employee $employee */
         if (! $employee = session('employee-register')) {
             return redirect()->route('login');
         }
