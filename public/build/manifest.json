@@ -1,6 +1,6 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.6c9311b5.js",
+    "file": "assets/app.bdd1a5cb.js",
     "src": "resources/js/app.js",
     "isEntry": true,
     "dynamicImports": [
@@ -15,7 +15,7 @@
     ]
   },
   "resources/js/Pages/Auth/LoginForm.vue": {
-    "file": "assets/LoginForm.c88efe36.js",
+    "file": "assets/LoginForm.087344e6.js",
     "src": "resources/js/Pages/Auth/LoginForm.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -23,7 +23,7 @@
     ]
   },
   "resources/js/Pages/Auth/RegisterForm.vue": {
-    "file": "assets/RegisterForm.20cd9956.js",
+    "file": "assets/RegisterForm.1da037d3.js",
     "src": "resources/js/Pages/Auth/RegisterForm.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -34,7 +34,7 @@
     ]
   },
   "resources/js/Pages/DesignLogo.vue": {
-    "file": "assets/DesignLogo.5c06a139.js",
+    "file": "assets/DesignLogo.6830fc4b.js",
     "src": "resources/js/Pages/DesignLogo.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -42,7 +42,7 @@
     ]
   },
   "resources/js/Pages/MonthlyTimesheet.vue": {
-    "file": "assets/MonthlyTimesheet.ca2decd7.js",
+    "file": "assets/MonthlyTimesheet.8995029b.js",
     "src": "resources/js/Pages/MonthlyTimesheet.vue",
     "isDynamicEntry": true,
     "imports": [
@@ -53,7 +53,7 @@
     ]
   },
   "resources/js/Pages/PreferencePage.vue": {
-    "file": "assets/PreferencePage.81a8f0a5.js",
+    "file": "assets/PreferencePage.7689c415.js",
     "src": "resources/js/Pages/PreferencePage.vue",
     "isDynamicEntry": true,
     "imports": [
